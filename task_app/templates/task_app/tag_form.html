@@ -1,0 +1,18 @@
+{% extends "task_app/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>{{ object|yesno:"Update,Add" }} Tag</h1>
+
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <br>
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+  <a class="btn btn-dark" href="{% url 'task_app:tag-list' %}" role="button">
+    Back to Tag list
+  </a>
+  </form>
+{% endblock %}
