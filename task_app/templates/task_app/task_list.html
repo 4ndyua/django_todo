@@ -1,0 +1,57 @@
+{% extends 'task_app/base.html' %}
+
+{% block content %}
+
+  <h1>
+    TO-DO List
+    <a class="btn btn-success float-right" href="{% url 'task_app:task-create' %}" role="button">
+      Add task
+    </a>
+  </h1>
+
+    {% if task_list %}
+    <ul>
+      {% for task in task_list %}
+          <br>
+        <li>
+          <strong>{{ task.content }}</strong>
+            <br>
+
+          {% if task.completed %}
+            <strong style="color: green">COMPLETED</strong>
+            <a class="btn btn-secondary float-right" href="{% url 'task_app:task_change_complete' pk=task.id %}" role="button">
+              Undo
+            </a>
+          {% else %}
+            <strong style="color: red">Not COMPLETED</strong>
+            <a class="btn btn-success float-right" href="{% url 'task_app:task_change_complete' pk=task.id %}" role="button">
+              Complete
+            </a>
+          {% endif %}
+
+          <br>
+
+          Start time: {{ task.time_start }}
+          <br>
+          {% if task.time_end %}
+            <span style="color: orangered">Time to finish: {{ task.time_end }}</span>
+          {% endif %}
+
+          <br>
+
+          <span class="text-muted">
+            Tags: {% for tag in task.tags.all %} {{ tag.name }} {% endfor %}
+          </span>
+            <br>
+          <a href="{% url 'task_app:task-update' pk=task.id %}">Update</a>
+          <a href="{% url 'task_app:task-delete' pk=task.id %}">Delete</a>
+
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no tasks in list</p>
+  {% endif %}
+
+{% endblock %}
