@@ -1,9 +1,8 @@
 {% extends "task_app/base.html" %}
 {% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 
   <h1>{{ object|yesno:"Update,Add" }} Tag</h1>
 

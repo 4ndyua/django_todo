@@ -8,8 +8,7 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
-    time_end = forms.SelectDateWidget()
 
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = ['content', 'time_end', 'tags']
