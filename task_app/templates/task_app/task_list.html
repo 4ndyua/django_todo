@@ -1,6 +1,7 @@
 {% extends 'task_app/base.html' %}
 
 {% block content %}
+
   <h1>
     TO-DO List
     <a class="btn btn-success float-right" href="{% url 'task_app:task-create' %}" role="button">
@@ -14,9 +15,9 @@
         <li>
           <strong>{{ task.task }}</strong>
 
-          {% if task.completed %}
+          {% if task.done %}
             <strong style="color: green">Done</strong>
-            <a class="btn btn-secondary float-right" href="{% url 'task_app:task_change_complete ' pk=task.id %}" role="button">
+            <a class="btn btn-secondary float-right" href="{% url 'task_app:task_change_complete' pk=task.id %}" role="button">
               Undo
             </a>
           {% else %}
@@ -28,9 +29,9 @@
 
           <br>
 
-          Created: {{ task.time_start }}
-          {% if task.time_end %}
-            <span style="color: darkred">Deadline: {{ task.time_end }}</span>
+          Created: {{ task.created_at }}
+          {% if task.deadline %}
+            <span style="color: darkred">Deadline: {{ task.deadline }}</span>
           {% endif %}
 
           <br>
