@@ -16,12 +16,12 @@
 
           {% if task.completed %}
             <strong style="color: green">Done</strong>
-            <a class="btn btn-secondary float-right" href="{% url 'task_app:task_change_done_status' pk=task.id %}" role="button">
+            <a class="btn btn-secondary float-right" href="{% url 'task_app:task_change_complete ' pk=task.id %}" role="button">
               Undo
             </a>
           {% else %}
             <strong style="color: red">Not done</strong>
-            <a class="btn btn-success float-right" href="{% url 'task_app:task_change_done_status' pk=task.id %}" role="button">
+            <a class="btn btn-success float-right" href="{% url 'task_app:task_change_complete' pk=task.id %}" role="button">
               Complete
             </a>
           {% endif %}
@@ -38,8 +38,8 @@
           <span class="text-muted">
             Tags: {% for tag in task.tags.all %} {{ tag.name }} {% endfor %}
           </span>
-          <a href="{% url 'tasks:task-update' pk=task.id %}">Update</a>
-          <a href="{% url 'tasks:task-delete' pk=task.id %}">Delete</a>
+          <a href="{% url 'task_app:task-update' pk=task.id %}">Update</a>
+          <a href="{% url 'task_app:task-delete' pk=task.id %}">Delete</a>
 
           <hr>
         </li>
